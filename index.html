@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html  style="text-align: center;" lang="en-us">
+
+   <head>
+        
+     <meta charset="UTF-8">
+     <title>Psychic Game</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    
+
+   </head>
+   
+   <body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-3">Psychic Game</h1>
+          <p class="lead">Guess the letter I'm Thinking of!</p>
+        </div>
+      </div>
+
+
+             <h3>Wins:    </h3>
+            <h4 id="goodGuess"></h4>
+            <h3>Losses:     </h3>
+            <h4 id="badGuess">0</h4>
+            <h3>Guesses Left:  </h3>
+            <h4 id="guessesLeft">9</h4>
+            <h4 id="guessSoFar">Your guesses so far:</h4>  
+
+   
+     <script type="text/javascript">
+   
+       var computerPic = ["u", "b", "a", "w","h"];
+    // this variable are the designated computer guesses
+       var wins = 0;
+       // this number variable will indicate how many wins the user gains upon guesses
+       var losses = 0;
+       // this number variable will indicate how many losses the user accumilates upon guesses
+       var guessesLeft = 9;
+       // this number variable will indicate how many guesses the user has left
+       var computerGuess = computerPic;
+       // this variable designates the computer's guess each time prompted
+     
+       var computerGuess = computerPic[Math.floor(Math.random() * computerPic.length)];
+       console.log(computerGuess);
+       // this causes 
+   
+     
+       document.onkeyup = function(event) {
+           var userGuess = event.key.toLowerCase();
+           document.getElementById("guessSoFar").innerText += " "+event.key;
+         
+
+           if (guessesLeft > 0) {
+               if (userGuess === computerGuess){
+                   wins++;
+                  document.getElementById("goodGuess").innerText = wins;
+                  computerGuess = computerPic[Math.floor(Math.random() * computerPic.length)];
+                  document.getElementById("guessSoFar").innerText = " ";
+                 // docCurrentGuess.innerText = wins;
+                 console.log(computerGuess);
+                  // console.log(wins);
+               }else{
+                   guessesLeft--;
+                   document.getElementById("guessesLeft").innerText = guessesLeft;
+                  //console.log(guessesLeft);
+                  console.log(computerGuess);
+
+               }
+               if (guessesLeft === 0){
+                   computerGuess = computerPic[Math.floor(Math.random() * computerPic.length)];
+                   guessesLeft =9;
+                   document.getElementById("guessesLeft").innerText = guessesLeft;
+                   losses++;
+                   document.getElementById("badGuess").innerText = losses;
+                   document.getElementById("guessSoFar").innerText = " ";
+                   console.log(computerGuess);
+               }
+               
+           }
+               
+ 
+       }
+
+   
+   </script>
+   
+     </body>
+   
+   </html>
+
